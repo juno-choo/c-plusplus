@@ -25,18 +25,3 @@ std::istream& operator>>(std::istream& is, Length& len)
     len.setValue(value);
     return is;
 }   
-
-int main()
-{
-    Length len1;
-    Length len2;
-
-    std::cout << "Enter length 1: ";
-    std::cin >> len1;
-    std::cout << "Enter length 2: ";
-    std::cin >> len2;
-
-    std::cout << len1 << " " << len2 << std::endl;
-
-    return 0;
-}
