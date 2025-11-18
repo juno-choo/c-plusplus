@@ -2,22 +2,22 @@
 
 class SmartCounter {
 private:
-    int m_value;
+    int value;
 
 public:
     // Constructor
-    SmartCounter(int value) : m_value(value) {}
+    SmartCounter(int value) : value(value) {}
 
     // 1. TODO: Overload the dereference operator (*)
     // It should return the integer value held by the class.
     int operator*() const {
-        return m_value;
+        return value;
     }
 
     // 2. TODO: Overload the pre-increment operator (e.g., ++counter)
     // It should increment m_value AND return a reference to this object.
     SmartCounter& operator++() {
-        ++m_value;
+        ++value;
         return *this;
     }
 
@@ -26,14 +26,14 @@ public:
     // *before* it was decremented.
     SmartCounter operator--(int) {
         SmartCounter temp = *this; // Make a copy of the current state
-        --(this->m_value);                 // Decrement the current object's value
+        --(this->value);                 // Decrement the current object's value
         return temp;               // Return the copy (pre-decrement state)
     }
 
     // 4. TODO: Overload the logical NOT operator (!)
     // It should return true if m_value is 0, false otherwise.
     bool operator!() const {
-        return m_value == 0;
+        return value == 0;
     }
 };
 

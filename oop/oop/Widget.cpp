@@ -5,10 +5,14 @@ class Widget {
 private:
     bool enabled;
 public:
-    // Widget(bool enabled);
+    virtual ~Widget() {
+        std::cout << "Widget destroyed" << std::endl;
+    }
     void enable();
     void disable();
-    // ~Widget();
+    virtual void draw() const {
+        std::cout << "Drawing Widget: " << (enabled ? "Enabled" : "Disabled") << std::endl;
+    }
 };
 
 class TextBox : public Widget {
@@ -16,22 +20,30 @@ private:
     std::string text;
     
 public:
-    // TextBox(bool enabled) : Widget(enabled), text("") {
-    //     std::cout << "TextBox created\n";
-    // }
-    // explicit TextBox(const std::string& t) : Widget(true), text(t) {}
+    ~TextBox() {
+        std::cout << "TextBox destroyed" << std::endl;
+    }
     void setText(const std::string& t);
     std::string getText() const;
-    // ~TextBox();
+    // Redefine draw to include text
+    void draw() const override {
+        std::cout << "TextBox content: " << text << std::endl;
+    }
 };
 
-// Widget::Widget(bool enabled) : enabled(enabled) {
-//     std::cout << "Widget created\n";
-// }
-
-// Widget::~Widget() {
-//     std::cout << "Widget destroyed\n";
-// }
+class CheckBox : public Widget {
+private:
+    bool checked;
+public:
+    ~CheckBox() {
+        std::cout << "CheckBox destroyed" << std::endl;
+    }
+    void setChecked(bool c);
+    bool isChecked() const;
+    void draw() const override {
+        std::cout << "CheckBox: " << (checked ? "Checked" : "Unchecked") << std::endl;
+    }
+};
 
 void Widget::enable() {
     enabled = true;
